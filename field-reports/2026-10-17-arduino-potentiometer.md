@@ -27,7 +27,7 @@ Connect a B103 potentiometer to the Arduino and capture its output using `analog
 
 #### Circuit Description
 
-![Arduino potentiometer experiment](10172026_FieldReport_img1.jpg)
+![Arduino potentiometer experiment](../images/10172026_FieldReport_img.jpg)
 *Figure 1. Arduino potentiometer experiment: Arduino Uno connected to a breadboard-mounted potentiometer. Jumper wires establish the circuit connections for investigating the component's behavior under program control.*
 
 **Components Used:**
