@@ -20,7 +20,7 @@ I also began developing an **Embedded Engineering Glossary**, starting with RTOS
 - An array of character pointers stores addresses rather than the string characters themselves.
 - `sizeof()` measures the storage occupied by its operand, while `strlen()` measures the number of characters before a string's terminating null character.
 - Array indexing and pointer arithmetic can provide equivalent ways to access array elements.
-
+- Runtime measurements confirmed the theoretical memory calculations and illustrated the difference between storing character data and storing memory addresses.
 ---
 
 ## 2. Embedded Systems Vocabulary Builder
@@ -93,8 +93,6 @@ Investigate:
  *              and explicit pointer arithmetic.
  *
  * Target:      Native Desktop
- *
- * License:     MIT License (or your preferred publishing terms)
  * Blog/Ref:    https://pauljonessoftware.com
  *
  ******************************************************************************/
@@ -167,6 +165,61 @@ int main(void) {
     return 0;
 }
 ```
+### Program Output
+
+The program was compiled and executed successfully, producing the following output:
+
+```text
+The chapters array uses 135 bytes of memory.
+The chapters_ptr array uses 20 bytes of memory.
+
+The myName array uses 5 bytes of memory.
+The myName pointer uses 4 bytes of memory.
+
+The number of chapters (rows) in the array is 5.
+
+chapters[0] is Introduction
+chapters[1] is Getting Started with C
+chapters[2] is Introduction to Data Types
+chapters[3] is Working with Numbers
+chapters[4] is Control Structures
+
+(chapters_ptr + 0) is Introduction
+(chapters_ptr + 1) is Getting Started with C
+(chapters_ptr + 2) is Introduction to Data Types
+(chapters_ptr + 3) is Working with Numbers
+(chapters_ptr + 4) is Control Structures
+```
+
+### Runtime Observations
+
+The execution results confirmed the expected behavior of both storage models.
+
+- The contiguous two-dimensional array occupied **135 bytes**, exactly matching the theoretical calculation:
+
+  ```text
+  5 × 27 = 135 bytes
+  ```
+
+- The pointer array occupied **20 bytes**, consistent with five 4-byte pointers on the test platform.
+
+- The character array:
+
+  ```c
+  char myName[] = "Paul";
+  ```
+
+  occupied **5 bytes**, including the terminating null character (`'\0'`).
+
+- The pointer:
+
+  ```c
+  char *pMyName = myName;
+  ```
+
+  occupied **4 bytes**, demonstrating that a pointer stores only an address rather than a copy of the referenced data.
+
+- Both traversal techniques produced identical chapter listings, demonstrating that array indexing and pointer arithmetic access the same logical information through different memory organizations.
 
 ---
 
@@ -246,14 +299,18 @@ The string literals have static storage duration and are not allocated on the he
 
 ### C. Comparing Storage Requirements
 
-| Declaration | Typical 32-bit size | Typical 64-bit size |
-|---|---:|---:|
-| `char chapters[5][27]` | 135 bytes | 135 bytes |
-| `const char* chapters_ptr[5]` | 20 bytes | 40 bytes |
-| `char myName[] = "Paul"` | 5 bytes | 5 bytes |
-| `char *pMyName = myName` | 4 bytes | 8 bytes |
-
 Pointer sizes shown are typical platform examples, not universal guarantees.
+
+The actual results observed during execution were:
+
+| Expression | Runtime Result |
+|---|---:|
+| `sizeof(chapters)` | 135 bytes |
+| `sizeof(chapters_ptr)` | 20 bytes |
+| `sizeof(myName)` | 5 bytes |
+| `sizeof(pMyName)` | 4 bytes |
+
+These measurements match the expected values for a typical 32-bit environment.
 
 The `sizeof(chapters_ptr)` result measures only the pointer array. It excludes the storage occupied by the string literals.
 
@@ -290,6 +347,19 @@ chapters_ptr[i]
 Pointer arithmetic scales by the size of the pointed-to type. Here, `chapters_ptr` points to elements of type `const char *`, so adding one advances to the next pointer element.
 
 Both traversal approaches produce the same chapter titles, although they operate on different data structures.
+The runtime output demonstrated this equivalence directly. The chapter titles printed using:
+
+```c
+chapters[i]
+```
+
+were identical to those printed using:
+
+```c
+*(chapters_ptr + i)
+```
+
+confirming that different storage strategies can expose the same logical interface to the programmer.
 
 ---
 
@@ -431,6 +501,8 @@ Understanding those differences is important because embedded systems often requ
 
 Each pointer experiment continues to reveal that what appears to be a simple language feature can provide a direct window into how a computer organizes and accesses data.
 
+This exercise also reinforced the value of verifying assumptions through experimentation. The measured results matched the theoretical calculations exactly, bridging the gap between abstract language concepts and observable behavior. Seeing a 135-byte contiguous array compared directly against a 20-byte pointer array made the trade-offs concrete in a way that diagrams and definitions alone cannot.
+
 ---
 
 ## Mission Status
@@ -444,5 +516,7 @@ Each pointer experiment continues to reveal that what appears to be a simple lan
 > Pointer arrays store addresses of character data.
 >
 > `sizeof()` measures storage, while `strlen()` measures string length.
+>
+> Runtime measurements confirm the theoretical memory calculations.
 >
 > Understanding the difference is essential for effective C programming and embedded systems development.
