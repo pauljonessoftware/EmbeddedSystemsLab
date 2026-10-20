@@ -94,7 +94,6 @@ Investigate:
  *
  * Target:      Native Desktop
  *
- * License:     MIT License (or your preferred publishing terms)
  * Blog/Ref:    https://pauljonessoftware.com
  *
  ******************************************************************************/
