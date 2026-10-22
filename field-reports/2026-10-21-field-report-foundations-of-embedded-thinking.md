@@ -74,7 +74,7 @@ The two-dimensional array allocates fixed storage for every string, while the po
 
 The program measures memory consumption using `sizeof()`.
 
-Exa*ple:
+Example:
 
 ```c
 printf("The chapters array uses %zu bytes of memory.\n",
