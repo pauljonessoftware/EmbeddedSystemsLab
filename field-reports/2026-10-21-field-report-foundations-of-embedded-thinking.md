@@ -66,13 +66,13 @@ with:
 const char *chapters_ptr[5];
 ```
 
-The two-dime*sional array allocates fixed storage for every string, while the poin*er array stores only memory addresses that reference existing string literals.
+The two-dimensional array allocates fixed storage for every string, while the poin*er array stores only memory addresses that reference existing string literals.
 
 ---
 
-### 2. Array Memory*Usage
+### 2. Array Memory Usage
 
-The program measures memory*consumption using `sizeof()`.
+The program measures memory consumption using `sizeof()`.
 
 Exa*ple:
 
@@ -102,7 +102,7 @@ char *MyName = myName;
 
 **Observations:**
 
-- The array contains the cha*acters themselves.
+- The array contains the characters themselves.
 - The pointer c*ntains only an address.
 - `sizeof(*MyName)` returns the storage required for the entire array.
 - `sizeof(*MyName)` returns the size of the pointer itself.
