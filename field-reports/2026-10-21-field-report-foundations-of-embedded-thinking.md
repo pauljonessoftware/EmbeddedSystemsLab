@@ -76,17 +76,10 @@ The program measures memory consumption using `sizeof()`.
 
 Example:
 
-```c
-printf("The chapters array uses %zu bytes of memory.\n",
- *     sizeof(chapters));
-```
 
-and
+printf("The chapters array uses %zu bytes of memory.\n", sizeof(chapters));
 
-*``c
-printf("The chapters_ptr array uses %zu bytes of memory.\n\n",
-  *    sizeof(chapters_ptr));
-```
+printf("The chapters_ptr array uses %zu bytes of memory.\n\n", sizeof(chapters_ptr));
 
 This exercise reinforces the difference between storing data directly and storing references to data.
 
@@ -95,10 +88,8 @@ This exercise reinforces the difference between storing data directly and storin
 
 The experiment also compares:
 
-```c
 char myName[] = "Paul";
 char *MyName = myName;
-```
 
 **Observations:**
 
