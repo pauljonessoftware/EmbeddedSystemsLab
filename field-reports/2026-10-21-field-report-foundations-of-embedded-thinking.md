@@ -66,7 +66,7 @@ with:
 const char *chapters_ptr[5];
 ```
 
-The two-dime*sional array allocates fixed stora*e for every string, while the poin*er array stores only memory addres*es that reference existing string *iterals.
+The two-dime*sional array allocates fixed storage for every string, while the poin*er array stores only memory addresses that reference existing string literals.
 
 ---
 
@@ -77,21 +77,21 @@ The program measures memory*consumption using `sizeof()`.
 Exa*ple:
 
 ```c
-printf("The chapters ar*ay uses %zu bytes of memory.\n",
+printf("The chapters array uses %zu bytes of memory.\n",
  *     sizeof(chapters));
 ```
 
 and
 
 *``c
-printf("The chapters_ptr array*uses %zu bytes of memory.\n\n",
+printf("The chapters_ptr array uses %zu bytes of memory.\n\n",
   *    sizeof(chapters_ptr));
 ```
 
-Th*s exercise reinforces the differen*e between storing data directly an* storing references to data.
+This exercise reinforces the difference between storing data directly and storing references to data.
 
 ---
-*### 3. Character Arrays and Pointe*s
+*### 3. Character Arrays and Pointers
 
 The experiment also compares:
 
@@ -104,8 +104,8 @@ char *MyName = myName;
 
 - The array contains the cha*acters themselves.
 - The pointer c*ntains only an address.
-- `sizeof(*MyName)` returns the storage requir*d for the entire array.
-- `sizeof(*MyName)` returns the size of the p*inter itself.
+- `sizeof(*MyName)` returns the storage required for the entire array.
+- `sizeof(*MyName)` returns the size of the pointer itself.
 
 ---
 
