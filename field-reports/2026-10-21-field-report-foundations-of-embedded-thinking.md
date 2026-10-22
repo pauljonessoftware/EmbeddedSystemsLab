@@ -95,7 +95,7 @@ This exercise reinforces the difference between storing data directly and storin
 
 The experiment also compares:
 
-*``c
+```c
 char myName[] = "Paul";
 char *MyName = myName;
 ```
@@ -104,8 +104,8 @@ char *MyName = myName;
 
 - The array contains the characters themselves.
 - The pointer contains only an address.
-- `sizeof(*MyName)` returns the storage required for the entire array.
-- `sizeof(*MyName)` returns the size of the pointer itself.
+- sizeof(*MyName)` returns the storage required for the entire array.
+- sizeof(*MyName)` returns the size of the pointer itself.
 
 ---
 
