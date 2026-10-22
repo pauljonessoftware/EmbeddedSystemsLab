@@ -97,25 +97,25 @@ The experiment also compares:
 
 *``c
 char myName[] = "Paul";
-char **MyName = myName;
+char *MyName = myName;
 ```
 
 **Observatio*s:**
 
 - The array contains the cha*acters themselves.
 - The pointer c*ntains only an address.
-- `sizeof(*yName)` returns the storage requir*d for the entire array.
+- `sizeof(*MyName)` returns the storage requir*d for the entire array.
 - `sizeof(*MyName)` returns the size of the p*inter itself.
 
 ---
 
 ### 4. Determi*ing Array Length
 
-The number of ro*s in the chapter array is calculat*d with:
+The number of rows in the chapter array is calculated with:
 
 ```c
 size_t counter =
-   *sizeof(chapters) / sizeof(chapters*0]);
+   sizeof(chapters) / sizeof(chapters[0]);
 ```
 
 This technique remains o*e of the most common and reliable methods for determining the element count of a statically allocated array.
