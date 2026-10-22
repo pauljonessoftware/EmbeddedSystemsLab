@@ -100,7 +100,7 @@ char myName[] = "Paul";
 char *MyName = myName;
 ```
 
-**Observatio*s:**
+**Observations:**
 
 - The array contains the cha*acters themselves.
 - The pointer c*ntains only an address.
@@ -109,7 +109,7 @@ char *MyName = myName;
 
 ---
 
-### 4. Determi*ing Array Length
+### 4. Determining Array Length
 
 The number of rows in the chapter array is calculated with:
 
@@ -118,7 +118,7 @@ size_t counter =
    sizeof(chapters) / sizeof(chapters[0]);
 ```
 
-This technique remains o*e of the most common and reliable methods for determining the element count of a statically allocated array.
+This technique remains one of the most common and reliable methods for determining the element count of a statically allocated array.
 
 ---
 
