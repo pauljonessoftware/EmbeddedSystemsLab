@@ -22,13 +22,15 @@ Today's studies focused on three areas:
 - Reviewed a new sketch and circuit demonstrating how an interrupt can dynamically modify the duration of the green-light delay in an existing traffic-light experiment.
 - Continued building familiarity with event-driven programming concepts used extensively in embedded systems.
 
+
 ## New Glossary Terms
 
 | Term | Definition |
 |---|---|
-| Interrupt | An event or signal that causes a processor to transfer control to an interrupt handler, subject to the processor's interrupt configuration and priority rules. |
-| Interrupt Service Routine (ISR) | A function or handler executed in response to an interrupt. An ISR should generally execute quickly and avoid blocking operations. |
-| Resource-Constrained Environment (RCE) | A computing environment in which limited resources—such as memory, processing capacity, storage, bandwidth, or electrical power—influence software design and implementation. Common examples include embedded systems, microcontrollers, and IoT devices. |
+| Interrupt | An event or signal that causes a processor to transfer control to an interrupt handler. |
+| ISR | A handler executed in response to an interrupt. |
+| RCE | A computing environment in which limited resources influence software design. |
+
 
 
 ## Observations
@@ -72,6 +74,7 @@ const char *chapters_ptr[5];
 The two-dimensional array allocates fixed storage for every string, while the pointer array stores only memory addresses that reference existing string literals.
 
 ---
+
 
 
 
@@ -158,10 +161,12 @@ The function reports the number of visible characters in a string but excludes t
 
 ---
 
+
 ### 7. Pointer Array Analysis
 
-The experiment calculates:
+The experiment calculates the number of pointers and their combined storage size.
 
+```c
 size_t sizeOfPointerArray =
     sizeof(chapters_ptr) / sizeof(chapters_ptr[0]);
 
@@ -169,10 +174,9 @@ size_t sizeOfCharPointer = sizeof(char *);
 
 size_t calculatedSize =
     sizeOfPointerArray * sizeOfCharPointer;
+```
 
 This provides a concrete demonstration of how pointer-based structures consume memory.
-
----
 
 ## Lessons Learned
 
