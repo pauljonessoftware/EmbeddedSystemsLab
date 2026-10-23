@@ -72,6 +72,7 @@ The two-dimensional array allocates fixed storage for every string, while the po
 
 ---
 
+
 ### 2. Array Memory Usage
 
 The program measures memory requirements using `sizeof()`.
@@ -91,25 +92,27 @@ The `sizeof()` operator reports the size of each array object in bytes.
 - `sizeof(chapters)` measures the total storage occupied by the two-dimensional character array.
 - `sizeof(chapters_ptr)` measures the total storage occupied by the array of character pointers.
 
-The character array reserves space for all five rows, each containing 27 characters. The pointer array stores five pointer objects whose sizes depend on the target implementation.
+The character array reserves space for five rows, each containing 27 characters, for a total of 135 bytes. The pointer array stores five pointer objects, whose sizes depend on the target implementation.
 
 The string literals referenced by `chapters_ptr` are stored separately; their storage is not included in `sizeof(chapters_ptr)`.
 
-This exercise reinforces the distinction between storing character data directly in an array and storing pointers that refer to character data elsewhere.
+This exercise reinforces the difference between storing character data directly in an array and storing pointers that refer to character data elsewhere.
 
----
+* * *
+
+
 ### 3. Character Arrays and Pointers
 
-The experiment also compares a character array with a pointer to its first element.
+The experiment compares a character array with a pointer to its first element.
 
 ```c
 char myName[] = "Paul";
 char *pMyName = myName;
 ```
 
-The array contains five characters in storage: `P`, `a`, `u`, `l`, and the terminating null character (`'\0'`). The pointer variable stores an address that refers to the first element of the array.
+The array contains five bytes: four visible characters and the terminating null character (`'\0'`). The pointer variable stores the address of the array's first element.
 
-The following expressions demonstrate the difference:
+The following expressions illustrate three distinct measurements:
 
 ```c
 sizeof(myName)   /* Size of the array: 5 bytes */
@@ -117,16 +120,14 @@ sizeof(pMyName)  /* Size of the pointer object */
 sizeof(*pMyName) /* Size of the pointed-to char: 1 byte */
 ```
 
-Key observations:
 
-- `sizeof(myName)` returns the total size of the array, including its null terminator.
-- `sizeof(pMyName)` returns the size of the pointer object, which is implementation-dependent.
-- `sizeof(*pMyName)` returns the size of the character referenced by the pointer. In C, `sizeof(char)` is always 1 byte.
-- `strlen(myName)` returns the string length without counting the terminating null character, so the result is 4.
+## Observations
 
-These examples demonstrate why an array's size, a pointer's size, and the size of the object referenced by a pointer are three different measurements.
+This chapter provided a practical introduction to asynchronous event handling, a foundational concept in embedded systems. Unlike polling-based approaches, interrupt-driven designs allow a microcontroller to respond to supported events without continuously checking for them in the main program.
 
----
+When an interrupt is accepted, the processor transfers control to the associated interrupt handler and subsequently resumes normal execution. The timing and handling of interrupts depend on the hardware, interrupt configuration, and software implementation.
+
+* * *
 
 ### 4. Determining Array Length
 
