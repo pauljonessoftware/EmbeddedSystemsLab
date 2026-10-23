@@ -25,14 +25,16 @@ Today's studies focused on three areas:
 ## New Glossary Terms
 
 | Term | Definition |
-|--------|------------|
-| Interrupt | A hardware or software signal that temporarily halts normal program execution so a higher-priority task can be serviced. |
-| Interrupt Service Routine (ISR) | A special function automatically executed when an interrupt occurs. |
-| Resource-Constrained Environment (RCE) | A computing environment in which memory, processing power, storage, bandwidth, or electrical power are limited and must be carefully managed. Common in embedded systems, microcontrollers, IoT devices, and battery-powered electronics. |
+|---|---|
+| Interrupt | An event or signal that causes a processor to transfer control to an interrupt handler, subject to the processor's interrupt configuration and priority rules. |
+| Interrupt Service Routine (ISR) | A function or handler executed in response to an interrupt. An ISR should generally execute quickly and avoid blocking operations. |
+| Resource-Constrained Environment (RCE) | A computing environment in which limited resources—such as memory, processing capacity, storage, bandwidth, or electrical power—influence software design and implementation. Common examples include embedded systems, microcontrollers, and IoT devices. |
 
 ## Observations
 
-This chapter provided a practical introduction to asynchronous event handling, a foundational concept for embedded systems. Unlike polling-based solutions, interrupts allow a microcontroller to respond immediately to external events while continuing normal program execution the rest of the time.
+This chapter provided a practical introduction to asynchronous event handling, a foundational concept in embedded systems. Unlike polling-based approaches, interrupt-driven designs allow a processor to respond to supported events without continuously checking for them in the main program.
+
+When an interrupt is accepted, the processor executes the associated interrupt handler and subsequently resumes normal execution. The timing and handling of interrupts depend on the hardware, interrupt configuration, and software implementation.
 
 ---
 
@@ -72,31 +74,57 @@ The two-dimensional array allocates fixed storage for every string, while the po
 
 ### 2. Array Memory Usage
 
-The program measures memory consumption using `sizeof()`.
+The program measures memory requirements using `sizeof()`.
 
-Example:
+For example:
 
+```c
+printf("The chapters array uses %zu bytes of memory.\n",
+       sizeof(chapters));
 
-printf("The chapters array uses %zu bytes of memory.\n", sizeof(chapters));
+printf("The chapters_ptr array uses %zu bytes of memory.\n\n",
+       sizeof(chapters_ptr));
+```
 
-printf("The chapters_ptr array uses %zu bytes of memory.\n\n", sizeof(chapters_ptr));
+The `sizeof()` operator reports the size of each array object in bytes.
 
-This exercise reinforces the difference between storing data directly and storing references to data.
+- `sizeof(chapters)` measures the total storage occupied by the two-dimensional character array.
+- `sizeof(chapters_ptr)` measures the total storage occupied by the array of character pointers.
+
+The character array reserves space for all five rows, each containing 27 characters. The pointer array stores five pointer objects whose sizes depend on the target implementation.
+
+The string literals referenced by `chapters_ptr` are stored separately; their storage is not included in `sizeof(chapters_ptr)`.
+
+This exercise reinforces the distinction between storing character data directly in an array and storing pointers that refer to character data elsewhere.
 
 ---
-*### 3. Character Arrays and Pointers
+### 3. Character Arrays and Pointers
 
-The experiment also compares:
+The experiment also compares a character array with a pointer to its first element.
 
+```c
 char myName[] = "Paul";
-char *MyName = myName;
+char *pMyName = myName;
+```
 
-**Observations:**
+The array contains five characters in storage: `P`, `a`, `u`, `l`, and the terminating null character (`'\0'`). The pointer variable stores an address that refers to the first element of the array.
 
-- The array contains the characters themselves.
-- The pointer contains only an address.
-- sizeof(*MyName)` returns the storage required for the entire array.
-- sizeof(*MyName)` returns the size of the pointer itself.
+The following expressions demonstrate the difference:
+
+```c
+sizeof(myName)   /* Size of the array: 5 bytes */
+sizeof(pMyName)  /* Size of the pointer object */
+sizeof(*pMyName) /* Size of the pointed-to char: 1 byte */
+```
+
+Key observations:
+
+- `sizeof(myName)` returns the total size of the array, including its null terminator.
+- `sizeof(pMyName)` returns the size of the pointer object, which is implementation-dependent.
+- `sizeof(*pMyName)` returns the size of the character referenced by the pointer. In C, `sizeof(char)` is always 1 byte.
+- `strlen(myName)` returns the string length without counting the terminating null character, so the result is 4.
+
+These examples demonstrate why an array's size, a pointer's size, and the size of the object referenced by a pointer are three different measurements.
 
 ---
 
@@ -154,22 +182,13 @@ The function reports the number of visible characters in a string but excludes t
 
 The experiment calculates:
 
-```c
 size_t sizeOfPointerArray =
     sizeof(chapters_ptr) / sizeof(chapters_ptr[0]);
-```
 
-and
-
-```c
 size_t sizeOfCharPointer = sizeof(char *);
-```
 
-These values are then used to calculate the total storage occupied by the pointer array:
-
-```c
-sizeOfPointerArray * sizeOfCharPointer
-```
+size_t calculatedSize =
+    sizeOfPointerArray * sizeOfCharPointer;
 
 This provides a concrete demonstration of how pointer-based structures consume memory.
 
