@@ -30,13 +30,14 @@ Today's studies focused on three areas:
 | Interrupt Service Routine (ISR) | A function or handler executed in response to an interrupt. An ISR should generally execute quickly and avoid blocking operations. |
 | Resource-Constrained Environment (RCE) | A computing environment in which limited resources—such as memory, processing capacity, storage, bandwidth, or electrical power—influence software design and implementation. Common examples include embedded systems, microcontrollers, and IoT devices. |
 
+
 ## Observations
 
-This chapter provided a practical introduction to asynchronous event handling, a foundational concept in embedded systems. Unlike polling-based approaches, interrupt-driven designs allow a processor to respond to supported events without continuously checking for them in the main program.
+This chapter provided a practical introduction to asynchronous event handling, a foundational concept in embedded systems. Unlike polling-based approaches, interrupts allow a microcontroller to respond to supported events without continuously checking for them in the main program.
 
-When an interrupt is accepted, the processor executes the associated interrupt handler and subsequently resumes normal execution. The timing and handling of interrupts depend on the hardware, interrupt configuration, and software implementation.
+When an interrupt is accepted, the processor transfers control to the associated interrupt handler and subsequently resumes normal execution. The timing and handling of interrupts depend on the hardware, interrupt configuration, and software implementation.
 
----
+* * *
 
 # C Programming
 
@@ -73,11 +74,12 @@ The two-dimensional array allocates fixed storage for every string, while the po
 ---
 
 
+
 ### 2. Array Memory Usage
 
 The program measures memory requirements using `sizeof()`.
 
-For example:
+Example:
 
 ```c
 printf("The chapters array uses %zu bytes of memory.\n",
@@ -87,19 +89,18 @@ printf("The chapters_ptr array uses %zu bytes of memory.\n\n",
        sizeof(chapters_ptr));
 ```
 
-The `sizeof()` operator reports the size of each array object in bytes.
+The `sizeof()` operator reports the size of an object in bytes.
 
 - `sizeof(chapters)` measures the total storage occupied by the two-dimensional character array.
 - `sizeof(chapters_ptr)` measures the total storage occupied by the array of character pointers.
 
-The character array reserves space for five rows, each containing 27 characters, for a total of 135 bytes. The pointer array stores five pointer objects, whose sizes depend on the target implementation.
+The character array reserves space for five rows, each containing 27 characters, for a total of 135 bytes. The pointer array contains five pointer objects, whose sizes depend on the target implementation.
 
 The string literals referenced by `chapters_ptr` are stored separately; their storage is not included in `sizeof(chapters_ptr)`.
 
 This exercise reinforces the difference between storing character data directly in an array and storing pointers that refer to character data elsewhere.
 
 * * *
-
 
 ### 3. Character Arrays and Pointers
 
@@ -112,20 +113,22 @@ char *pMyName = myName;
 
 The array contains five bytes: four visible characters and the terminating null character (`'\0'`). The pointer variable stores the address of the array's first element.
 
-The following expressions illustrate three distinct measurements:
+The following expressions demonstrate three distinct measurements:
 
 ```c
-sizeof(myName)   /* Size of the array: 5 bytes */
-sizeof(pMyName)  /* Size of the pointer object */
-sizeof(*pMyName) /* Size of the pointed-to char: 1 byte */
+sizeof(myName)    /* Size of the array: 5 bytes */
+sizeof(pMyName)   /* Size of the pointer object */
+sizeof(*pMyName)  /* Size of the pointed-to char: 1 byte */
 ```
 
+Observations:
 
-## Observations
+- `sizeof(myName)` returns the total size of the array, including its null terminator.
+- `sizeof(pMyName)` returns the size of the pointer object, which is implementation-dependent.
+- `sizeof(*pMyName)` returns the size of the character referenced by the pointer. In C, `sizeof(char)` is always 1 byte.
+- `strlen(myName)` returns the string length without counting the terminating null character, so the result is 4.
 
-This chapter provided a practical introduction to asynchronous event handling, a foundational concept in embedded systems. Unlike polling-based approaches, interrupt-driven designs allow a microcontroller to respond to supported events without continuously checking for them in the main program.
-
-When an interrupt is accepted, the processor transfers control to the associated interrupt handler and subsequently resumes normal execution. The timing and handling of interrupts depend on the hardware, interrupt configuration, and software implementation.
+These examples demonstrate why an array's size, a pointer's size, and the size of the object referenced by a pointer are three different measurements.
 
 * * *
 
