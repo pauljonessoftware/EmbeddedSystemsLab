@@ -75,11 +75,10 @@ The two-dimensional array allocates fixed storage for every string, while the po
 
 
 
+
 ### 2. Array Memory Usage
 
-The program measures memory requirements using `sizeof()`.
-
-Example:
+The program measures memory consumption using `sizeof()`.
 
 ```c
 printf("The chapters array uses %zu bytes of memory.\n",
@@ -89,48 +88,25 @@ printf("The chapters_ptr array uses %zu bytes of memory.\n\n",
        sizeof(chapters_ptr));
 ```
 
-The `sizeof()` operator reports the size of an object in bytes.
+This exercise reinforces the difference between storing data directly and storing pointers to data.
 
-- `sizeof(chapters)` measures the total storage occupied by the two-dimensional character array.
-- `sizeof(chapters_ptr)` measures the total storage occupied by the array of character pointers.
-
-The character array reserves space for five rows, each containing 27 characters, for a total of 135 bytes. The pointer array contains five pointer objects, whose sizes depend on the target implementation.
-
-The string literals referenced by `chapters_ptr` are stored separately; their storage is not included in `sizeof(chapters_ptr)`.
-
-This exercise reinforces the difference between storing character data directly in an array and storing pointers that refer to character data elsewhere.
-
-* * *
+---
 
 ### 3. Character Arrays and Pointers
 
-The experiment compares a character array with a pointer to its first element.
+The experiment also compares:
 
 ```c
 char myName[] = "Paul";
 char *pMyName = myName;
 ```
 
-The array contains five bytes: four visible characters and the terminating null character (`'\0'`). The pointer variable stores the address of the array's first element.
-
-The following expressions demonstrate three distinct measurements:
-
-```c
-sizeof(myName)    /* Size of the array: 5 bytes */
-sizeof(pMyName)   /* Size of the pointer object */
-sizeof(*pMyName)  /* Size of the pointed-to char: 1 byte */
-```
-
 Observations:
 
-- `sizeof(myName)` returns the total size of the array, including its null terminator.
-- `sizeof(pMyName)` returns the size of the pointer object, which is implementation-dependent.
-- `sizeof(*pMyName)` returns the size of the character referenced by the pointer. In C, `sizeof(char)` is always 1 byte.
-- `strlen(myName)` returns the string length without counting the terminating null character, so the result is 4.
-
-These examples demonstrate why an array's size, a pointer's size, and the size of the object referenced by a pointer are three different measurements.
-
-* * *
+- `sizeof(myName)` returns the size of the entire array, including the null terminator.
+- `sizeof(pMyName)` returns the size of the pointer itself.
+- `sizeof(*pMyName)` returns the size of one character, which is `sizeof(char)` and is always 1 in C.
+- `strlen(myName)` and `strlen(pMyName)` both return 4 because the string contains four visible characters.
 
 ### 4. Determining Array Length
 
