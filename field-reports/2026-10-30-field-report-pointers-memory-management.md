@@ -203,5 +203,3 @@ One particularly important discovery was **array decay**. An array is not itself
 Further experiments will focus on passing arrays and pointers to functions, modifying the original data through pointers, and understanding the difference between changing a pointer's local value and changing the data it references.
 
 **Measure it. Build it. Test it. Document it.**
-
----
