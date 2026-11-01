@@ -136,9 +136,7 @@ void displaySeers2(const char** seers, size_t numberOfElements) {
     }
 }
 
-```
 <img src="../images/2026-11-01-field-report-c-arrays-pointers-memory-layout.jpg" alt="c-arrays-pointers-memory-layout">
-```
 
 ## Execution
 
