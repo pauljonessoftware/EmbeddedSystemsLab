@@ -1,7 +1,7 @@
 # Field Report: C Arrays of Pointers & Memory Layout
 
 **Engineer:** Paul A. Jones, Jr.\
-**Date:** October 30, 2026\
+**Date:** November 01, 2026\
 **Mission:** Investigate array-to-pointer conversion in C, examine the
 memory layout of an array of string pointers, and demonstrate pointer
 arithmetic and indirection by inspecting actual addresses.
@@ -47,7 +47,7 @@ The complete program follows.
  *
  * File:        Prophets.c
  * Author:      Paul A. Jones, Jr.
- * Created:     [2026-10-30]
+ * Created:     [2026-11-01]
  * Description: Demonstrates array-to-pointer conversion, pointer arithmetic,
  *              indirection, and the memory layout of an array of string pointers.
  *
