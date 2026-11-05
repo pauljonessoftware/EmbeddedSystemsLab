@@ -16,7 +16,7 @@
 ## 2. Part I: The Pull-Up Circuit
 
 ### Circuit Setup & Schematics
-* **Supply Voltage ($V_{CC}$):** 9V Battery
+* **Supply Voltage ($V_{BAT}$):** 9V Battery
 * **Pull-Up Resistor ($R_1$):** $10\text{k}\Omega$ (Brown, Black, Orange)
 * **Load/Test Resistors ($R_2$):** $1\text{k}\Omega$ (Brown, Black, Red)
 
@@ -25,7 +25,7 @@
 
 ### Measured Values
 
-| Switch State | Battery ($V_{CC}$) | Junction Value ($V_J$) | Resistor 1 ($R_1$) | Resistor 2 ($R_2$) |
+| Switch State | Battery ($V_{BAT}$) | Junction Value ($V_J$) | Resistor 1 ($R_1$) | Resistor 2 ($R_2$) |
 | :--- | :--- | :--- | :--- | :--- |
 | **Open** | 9V | 9.57V | $10\text{k}\Omega$ | $1\text{k}\Omega$ |
 | **Closed** | 9V | 0.87V | $10\text{k}\Omega$ | $1\text{k}\Omega$ |
@@ -44,7 +44,7 @@ $$V_J = 9.55 \times \left(\frac{1}{10 + 1}\right) = 0.868\text{V}$$
 * **Conclusion:** The measured result ($0.87\text{V}$) provides precise experimental confirmation of the voltage-divider equation on the bench.
 
 ### Behavioral Breakdown
-* **Switch Open:** There is no complete path from the supply voltage to ground. As a result, essentially no current flows through the pull-up resistor. By Ohm's Law ($V = IR$), zero current produces a $0\text{V}$ drop across the resistor ($0 \times 10,000\Omega = 0\text{V}$). The junction remains at nearly the same voltage as the power supply ($9.57\text{V}$ measured), "pulling" the junction toward $V_{CC}$ to create a default logic **HIGH** state.
+* **Switch Open:** There is no complete path from the supply voltage to ground. As a result, essentially no current flows through the pull-up resistor. By Ohm's Law ($V = IR$), zero current produces a $0\text{V}$ drop across the resistor ($0 \times 10,000\Omega = 0\text{V}$). The junction remains at nearly the same voltage as the power supply ($9.57\text{V}$ measured), "pulling" the junction toward $V_{BAT}$ to create a default logic **HIGH** state.
 * **Switch Closed:** Current flows through the resistor to ground, producing a voltage drop that causes the junction voltage to fall near ground potential ($0.87\text{V}$ measured), creating an active logic **LOW** state.
 
 ```
@@ -65,7 +65,7 @@ Switch Open:                        Switch Closed:
 ## 3. Part II: The Pull-Down Circuit
 
 ### Circuit Setup & Schematics
-* **Supply Voltage ($V_{CC}$):** 9V Battery
+* **Supply Voltage ($V_{BAT}$):** 9V Battery
 * **Pull-Down Resistor ($R_1$):** $10\text{k}\Omega$ (Brown, Black, Orange)
 
 ![Figure 2: Pull-Down Resistor Circuit and Measured Junction Voltages](../images/pullupcircuit.jpg)  
@@ -73,7 +73,7 @@ Switch Open:                        Switch Closed:
 
 ### Measured Values
 
-| Switch State | Battery ($V_{CC}$) | Junction Value ($V_J$) | Resistor 1 ($R_1$) |
+| Switch State | Battery ($V_{BAT}$) | Junction Value ($V_J$) | Resistor 1 ($R_1$) |
 | :--- | :--- | :--- | :--- |
 | **Open** | 9V | 0V | $10\text{k}\Omega$ |
 | **Closed** | 9V | 9.53V | $10\text{k}\Omega$ |
@@ -106,8 +106,8 @@ Switch Open:                        Switch Closed:
 | **Active State (Closed)** | LOW | HIGH |
 
 ### Summary Rules
-* **Pull-Up:** Open $\rightarrow$ No path to ground $\rightarrow$ Junction stays near $V_{CC}$ $\rightarrow$ **HIGH**
-* **Pull-Down:** Open $\rightarrow$ No path to $V_{CC}$ $\rightarrow$ Junction stays near Ground $\rightarrow$ **LOW**
+* **Pull-Up:** Open $\rightarrow$ No path to ground $\rightarrow$ Junction stays near $V_{BAT}$ $\rightarrow$ **HIGH**
+* **Pull-Down:** Open $\rightarrow$ No path to $V_{BAT}$ $\rightarrow$ Junction stays near Ground $\rightarrow$ **LOW**
 
 ---
 
