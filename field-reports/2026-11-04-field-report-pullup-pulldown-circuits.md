@@ -16,7 +16,7 @@
 ## 2. Part I: The Pull-Up Circuit
 
 ### Circuit Setup & Schematics
-* **Supply Voltage ($V_{SS}$):** 9V Battery
+* **Supply Voltage ($V_{CC}$):** 9V Battery
 * **Pull-Up Resistor ($R_1$):** $10\text{k}\Omega$ (Brown, Black, Orange)
 * **Load/Test Resistors ($R_2$):** $1\text{k}\Omega$ (Brown, Black, Red)
 
@@ -25,7 +25,7 @@
 
 ### Measured Values
 
-| Switch State | Battery ($V_{SS}$) | Junction Value ($V_J$) | Resistor 1 ($R_1$) | Resistor 2 ($R_2$) |
+| Switch State | Battery ($V_{CC}$) | Junction Value ($V_J$) | Resistor 1 ($R_1$) | Resistor 2 ($R_2$) |
 | :--- | :--- | :--- | :--- | :--- |
 | **Open** | 9V | 9.57V | $10\text{k}\Omega$ | $1\text{k}\Omega$ |
 | **Closed** | 9V | 0.87V | $10\text{k}\Omega$ | $1\text{k}\Omega$ |
@@ -65,7 +65,7 @@ Switch Open:                        Switch Closed:
 ## 3. Part II: The Pull-Down Circuit
 
 ### Circuit Setup & Schematics
-* **Supply Voltage ($V_{SS}$):** 9V Battery
+* **Supply Voltage ($V_{CC}$):** 9V Battery
 * **Pull-Down Resistor ($R_1$):** $10\text{k}\Omega$ (Brown, Black, Orange)
 
 ![Figure 2: Pull-Down Resistor Circuit and Measured Junction Voltages](../images/pullupcircuit.jpg)  
@@ -73,7 +73,7 @@ Switch Open:                        Switch Closed:
 
 ### Measured Values
 
-| Switch State | Battery ($V_{SS}$) | Junction Value ($V_J$) | Resistor 1 ($R_1$) |
+| Switch State | Battery ($V_{CC}$) | Junction Value ($V_J$) | Resistor 1 ($R_1$) |
 | :--- | :--- | :--- | :--- |
 | **Open** | 9V | 0V | $10\text{k}\Omega$ |
 | **Closed** | 9V | 9.53V | $10\text{k}\Omega$ |
