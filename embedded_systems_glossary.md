@@ -1,8 +1,8 @@
 # The Embedded Systems Engineering Glossary
 
-**Active-high** - A signal that is considered "true" or "asserted" when it is at Logic HIGH.
+**Active-High** - A signal that is considered "true" or "asserted" when it is at Logic HIGH.
 
-**Active-low** - A signal that is considered "true" when it is at Logic LOW (very common with pull-up + button-to-ground arrangements).
+**Active-Low** - A signal that is considered "true" when it is at Logic LOW (very common with pull-up + button-to-ground arrangements).
 
 **Analog to Digital Converter (ADC)** - An electronic device that transforms continuous analog signals (such as sound, temperature, light, or voltage) into discrete digital numbers (binary code of 1s and 0s).
 
