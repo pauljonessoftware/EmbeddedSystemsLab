@@ -52,9 +52,9 @@
 
 **Momentary Switch** - A switch that changes state only while being actuated and returns to its normal state when released.
 
-**Normally Open (NO)** - A switch configuration in which the contacts are electrically disconnected in the default state and become connected when actuated.
-
 **Normally Closed (NC)** - A switch configuration in which the contacts are electrically connected in the default state and become disconnected when actuated.
+
+**Normally Open (NO)** - A switch configuration in which the contacts are electrically disconnected in the default state and become connected when actuated.
 
 **Pointer** - A variable that stores the memory address of another variable rather than the value itself.
 
