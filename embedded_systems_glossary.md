@@ -1,91 +1,85 @@
-# Embedded Systems Glossary & Reference Manual
+# The Embedded Systems Engineering Glossary
 
-A specialized, evolving reference guide for embedded systems engineering, covering foundational electronics, digital logic, C memory layouts, and firmware control concepts.
+**Active-high** - A signal that is considered "true" or "asserted" when it is at Logic HIGH.
 
-### **Analog-to-Digital Converter (ADC)**
+**Active-low** - A signal that is considered "true" when it is at Logic LOW (very common with pull-up + button-to-ground arrangements).
 
-An electronic device or peripheral that transforms continuous analog signals (such as sound, temperature, light, or voltage) into discrete digital numbers (binary sequences of 0s and 1s).
+**Analog to Digital Converter (ADC)** - An electronic device that transforms continuous analog signals (such as sound, temperature, light, or voltage) into discrete digital numbers (binary code of 1s and 0s).
 
-### **Controller Area Network (CAN)**
+**Contact Group** - A set of switch terminals that are electrically connected together.
 
-A robust communication protocol designed to let multiple electronic control units (ECUs) communicate over a shared two-wire network without requiring a dedicated communication line for every pair of devices.
+**Contact Resistance** - The small resistance of a closed contact.
 
-### **Cross-Compiler**
+**Controller Area Network (CAN)** - A communication protocol designed to let multiple electronic control units (ECUs) communicate over a shared network, without requiring a separate communication wire for every pair of devices.
 
-A compiler that runs on one computing platform (the host) but generates executable machine code intended to run on a different computing platform (the target). Cross-compilers are essential in embedded development because target microcontrollers often lack the memory or processing resources to compile their own software.
+**Continuity** - The presence of an electrically conductive path between two points.
 
-### **Digital-to-Analog Converter (DAC)**
+**Continuity Test** - A low-resistance check, where the meter beeps below a threshold that varies by meter.
 
-An electronic device or integrated circuit that translates digital data (represented as binary sequences of 0s and 1s) into a continuous analog signal (such as a voltage, current, or audio waveform).
+**Cross Compiler** - A compiler that runs on one computing platform (the host) but generates executable machine code intended to run on a different computing platform (the target). Cross-compilers are commonly used in embedded development because the target microcontroller often lacks the resources to compile its own software.
 
-### **Duty Cycle**
+**Current Limiting Resistor** - A resistor used to control the amount of current flowing through a component such as an LED.
 
-The percentage of one complete signal period during which a digital signal remains in its active (typically HIGH) state. Duty cycle is commonly used in Pulse Width Modulation (PWM) to control the average power delivered to a device or component.
+**Digital to Analog Converter (DAC)** - An electronic device or integrated circuit that translates digital data (represented as binary sequences of 0s and 1s) into a continuous analog signal (such as a voltage, current, or sound wave).
 
-### **Floating Input**
+**Digital Multimeter (DMM)** - An instrument used to measure electrical quantities such as voltage, current, and resistance, and to test continuity.
 
-A digital input pin whose voltage is not actively driven to a defined HIGH or LOW state. Floating inputs act like antennas, picking up electromagnetic noise that leads to unpredictable logic readings.
+**Duty Cycle** - The percentage of one complete signal period during which a digital signal remains in its active (typically HIGH) state. Duty cycle is commonly used in Pulse Width Modulation (PWM) to control the average power delivered to a device.
 
-### **General Purpose Input/Output (GPIO)**
+**Floating Input** - A digital input whose voltage is not driven to a defined HIGH or LOW state. Floating inputs may produce unpredictable behavior.
 
-Configurable microcontroller pins that can be dynamically programmed as digital inputs or outputs to interface with switches, LEDs, sensors, relays, and external hardware.
+**General Purpose Input Output (GPIO)** - Configurable microcontroller pins that can be programmed to function as digital inputs or outputs. GPIO pins are commonly used to interface with switches, LEDs, sensors, and other external hardware.
 
-### **Heap**
+**Heap** - A region of memory used for dynamic memory allocation. Memory is requested at runtime and released when no longer needed.
 
-A region of memory used for dynamic memory allocation. Memory is requested at runtime (e.g., via `malloc`) and must be manually released when no longer needed to prevent memory leaks or fragmentation in resource-constrained systems.
+**High-Impedance (Hi-Z)** - An electrical state where a pin presents extremely high resistance, effectively floating unless anchored by a pull-up or pull-down resistor.
 
-### **`#ifndef`**
+**ifndef** - Preprocessor directive meaning "if not defined." Commonly used with #define and #endif to create include guards that prevent a header file from being included multiple times within a compilation unit.
 
-A C/C++ preprocessor directive meaning "if not defined." Commonly combined with `#define` and `#endif` to form **include guards**, which prevent header files from being included multiple times within a single compilation unit.
+**Input Flapping** - The rapid, unintended oscillation of a digital input between HIGH and LOW states due to noise, bouncing, or a floating pin.
 
-### **Input Flapping**
+**Interrupt** - A hardware signal that tells the CPU to stop what it's currently doing, immediately handle a specific event, and then go back to exactly where it left off. On the Arduino Uno, there are three types: External, Pin change and Timer.
 
-The rapid, unintended oscillation of a digital input between HIGH and LOW states caused by electrical noise, contact bouncing, or an unbuffered floating pin.
+**Interrupt Service Routine (ISR)** - A function executed in response to an interrupt request. An ISR temporarily takes control of CPU execution to service the event that triggered the interrupt, after which normal program execution resumes.
 
-### **Interrupt**
+**Junction** - A point at which conductors or circuit elements are electrically connected.
 
-A hardware signal that tells the CPU to temporarily halt its current execution thread, immediately handle a high-priority event via a designated routine, and then return seamlessly to where it left off. (e.g., on the Arduino Uno, there are three types: External, Pin Change, and Timer).
+**Logic HIGH** - A voltage interpreted by a digital system as binary 1.
 
-### **Interrupt Service Routine (ISR)**
+**Logic LOW** - A voltage interpreted by a digital system as binary 0.
 
-A specialized callback function executed in response to an interrupt request. An ISR temporarily takes control of CPU execution to service the triggering event before returning control back to normal program execution.
+**Memory Fragmentation** - A condition where free heap memory becomes divided into many small blocks that cannot easily be reused.
 
-### **Logic HIGH**
+**Momentary Switch** - A switch that changes state only while being actuated and returns to its normal state when released.
 
-A voltage level interpreted by a digital system as binary 1.
+**Normally Open (NO)** - A switch configuration in which the contacts are electrically disconnected in the default state and become connected when actuated.
 
-### **Logic LOW**
+**Normally Closed (NC)** - A switch configuration in which the contacts are electrically connected in the default state and become disconnected when actuated.
 
-A voltage level interpreted by a digital system as binary 0.
+**Pointer** - A variable that stores the memory address of another variable rather than the value itself.
 
-### **Pointer**
+**Poles and Throws (SPST, SPDT)** - The formal way to describe switch configurations.
+*   **SPST (Single Pole, Single Throw):** A simple on/off switch.
+*   **SPDT (Single Pole, Double Throw):** A switch that routes one input to one of two outputs.
 
-A variable that stores the memory address of another variable rather than the value itself, enabling direct memory manipulation and dynamic data structures.
+**Polling** - Repeatedly checking whether something has happened.
 
-### **Polling**
+**Pull-Up & Pull-Down Circuits** - Electrical configurations that use resistors to establish a default HIGH (pull-up) or LOW (pull-down) voltage level on a digital input when no other device is actively driving that input. They prevent inputs from floating between logic states.
 
-A firmware control technique where the CPU repeatedly checks whether an event or state change has occurred.
+**Pulse Width Modulation (PWM)** - A technique used to simulate analog output using digital signals.
 
-### **Pull-Up & Pull-Down Circuits**
+**Real-Time Operating System (RTOS)** - A specialized operating system designed to process data and handle events with predictable, deterministic scheduling so tasks can meet defined timing constraints.
 
-Electrical configurations that use resistors to establish a default HIGH (pull-up) or LOW (pull-down) voltage level on a digital input when no other device is actively driving that input. They prevent inputs from floating between logic states.
+**Resource-Constrained Environment** - A computing environment in which critical resources such as memory, processing power, storage, bandwidth, or electrical power are limited and must be carefully managed. Resource-constrained environments are common in embedded systems, microcontrollers, IoT devices, and battery-powered electronics.
 
-### **Pulse Width Modulation (PWM)**
+**Short circuit** - An unintended low-resistance path, as in a switch wired straight across a battery.
 
-A technique used to simulate analog output using digital signals by rapidly switching between HIGH and LOW states.
+**Stack** - A region of memory used to store local variables, function parameters, and function return information. The stack grows and shrinks automatically as functions are called and return.
 
-### **Resource-Constrained Environment (RCE)**
+**Stack Overflow** - A condition that occurs when a program consumes more stack memory than is available.
 
-A computing environment in which critical resources such as memory, processing power, storage, bandwidth, or electrical power are limited and must be carefully managed. Common in embedded systems, microcontrollers, IoT devices, and battery-powered electronics.
+**Switch** - An electromechanical device used to open or close an electrical circuit.
 
-### **Real-Time Operating System (RTOS)**
+**Tactile Switch** - A momentary push-button switch designed to provide physical feedback when pressed.
 
-A specialized operating system designed to process data and handle events with predictable, deterministic scheduling so tasks can meet defined timing constraints.
-
-### **Stack**
-
-A region of memory used to store local variables, function parameters, and function return information. The stack grows and shrinks automatically in a last-in, first-out (LIFO) manner as functions are called and return.
-
-### **Voltage Divider**
-
-A circuit composed of two or more resistors that produces an output voltage that is a fraction of the input voltage.
+**Voltage Divider** - A circuit composed of two or more resistors that produces an output voltage that is a fraction of the input voltage.
