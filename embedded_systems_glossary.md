@@ -523,8 +523,8 @@ and where the output is measured.
 This is a working reference that will grow alongside the
 EmbeddedSystemsLab experiments and field reports.
 
-New terminology should be added as concepts are introduced, tested, and
-documented. Definitions should favor practical understanding while
+New terminology shall be added as concepts are introduced, tested, and
+documented. Definitions shall favor practical understanding while
 maintaining technical accuracy.
 
 **EmbeddedSystemsLab**\
