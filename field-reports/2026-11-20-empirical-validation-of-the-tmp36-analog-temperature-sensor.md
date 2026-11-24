@@ -19,70 +19,110 @@
 
 ## Equipment List
 
-* **TMP36** (TO-92 package)
-* **Arduino Uno** ($5.0\text{ V}$ / $3.3\text{ V}$ power rails)
-* **Digital Multimeter**
-* **Solderless Breadboard**
+- **TMP36** (TO-92 package)
+- **Arduino Uno** (5.0 V and 3.3 V power rails)
+- **Digital multimeter**
+- **Solderless breadboard**
 
 ## Objective
 
-Validate the transfer function and dynamic thermal response of an active solid-state analog temperature sensor (TMP36) using direct multimeter voltage measurements—establishing physical ground truth prior to microcontroller Analog-to-Digital Conversion (ADC) and serial communication integration.
+Validate the transfer function and dynamic thermal response of an active, solid-state analog temperature sensor (TMP36) using direct multimeter voltage measurements. Establish a physical measurement baseline before integrating the sensor with microcontroller Analog-to-Digital Conversion (ADC) and serial communications.
 
 ## Architecture & Transfer Function
 
-Unlike passive resistive sensors such as an LDR, the TMP36 is an active, voltage-output temperature sensor. It requires an external supply and ground connection and produces an analog output voltage proportional to temperature. Its low-output-impedance design allows direct interfacing with analog measurement circuitry.
+Unlike passive resistive sensors such as an LDR, the TMP36 is an active, voltage-output temperature sensor. It requires external power and ground connections and produces an analog output voltage proportional to temperature.
+
+Its low-output-impedance design allows it to interface directly with analog measurement circuitry.
+
+The TMP36 transfer function is:
 
 $$
-V_{\text{out}} = 0.50\text{ V} + \left(0.01\text{ V}/^\circ\text{C} \times T_{^\circ\text{C}}\right)
+V_{\text{out}} = 0.50\text{ V} +
+(0.010\text{ V}/^\circ\text{C} \times T_{^\circ\text{C}})
 $$
 
 Solving for temperature in degrees Celsius:
 
 $$
-T_{^\circ\text{C}} = \frac{V_{\text{out}} - 0.50\text{ V}}{0.01\text{ V}}
+T_{^\circ\text{C}} =
+\frac{V_{\text{out}}-0.50\text{ V}}{0.010\text{ V}/^\circ\text{C}}
 $$
 
-* **Offset ($0.50\text{ V}$ at $0^\circ\text{C}$):** Allows measurement of sub-zero temperatures without requiring a negative supply rail.
-* **Scale Factor ($10\text{ mV}/^\circ\text{C}$):** Independent of supply voltage ($3.3\text{ V}$ vs. $5.0\text{ V}$) within rated operating limits ($-40^\circ\text{C}$ to $+125^\circ\text{C}$).
+Key characteristics:
 
-### Pinout Reference (TO-92 Package, Flat Face Toward Observer)
+- **Offset (0.50 V at 0°C):** Allows measurement of sub-zero temperatures without requiring a negative supply voltage.
+- **Scale factor (10 mV/°C):** Provides a nominal output change of 10 mV for every 1°C temperature change.
+- **Operating range:** -40°C to +125°C.
+- **Supply voltage:** 2.7 V to 5.5 V.
 
-* **Left Pin ($+V_s$):** Positive DC supply (2.7V –5.5V)
-* **Center Pin ($V_{\text{out}}$):** Analog voltage output
-* **Right Pin ($\text{GND}$):** Ground reference
+The nominal transfer function is independent of whether the sensor is powered from the Arduino's 3.3 V or 5.0 V rail, provided the supply remains within its specified operating limits.
+
+### Pinout Reference (TO-92 Package)
+
+With the flat face of the package toward the observer and the leads pointing downward:
+
+- **Left pin (Vs):** Positive DC supply.
+- **Center pin (Vout):** Analog voltage output.
+- **Right pin (GND):** Ground reference.
 
 ## Experimental Procedure & Bench Diagnostics
 
-### 1. Circuit Topology Correction
+### 1. Initial Circuit Topology Correction
 
-My initial measurements were unexpectedly low. After reviewing the circuit, I discovered that I had reversed the TMP36's supply polarity. I had carried over some of the wiring habits from the previous voltage-divider experiment and failed to verify the sensor's pin orientation before applying power.
+My initial measurements were unexpectedly low. After reviewing the circuit, I discovered that I had reversed the TMP36's supply polarity.
 
-I corrected the wiring, confirmed the pinout against the datasheet, and repeated the measurements. The sensor then produced output voltages consistent with its expected transfer function. Fortunately, the sensor continued to operate normally after the wiring error.
+I had carried over some of the wiring habits from the previous voltage-divider experiment and failed to verify the sensor's pin orientation before applying power.
+
+I corrected the wiring, confirmed the pinout against the datasheet, and repeated the measurements. The sensor then produced output voltages consistent with its expected transfer function.
+
+Fortunately, the sensor continued to operate normally after the wiring error.
 
 ### 2. Package Orientation & Polarity Verification
 
-Subsequent anomalous readings ($0.432\text{ V}$ at $5.0\text{ V}$ and $0.380\text{ V}$ at $3.3\text{ V}$) traced back to reversed sensor pinout orientation on the breadboard. Re-verifying the physical TO-92 flat-face index against the datasheet pinout and re-seating the leads resolved the discrepancy without permanent thermal damage to the silicon die.
+During subsequent testing, I encountered additional anomalous readings:
+
+- 0.432 V with a 5.0 V supply.
+- 0.380 V with a 3.3 V supply.
+
+Further investigation pointed to an incorrect physical orientation of the sensor on the breadboard.
+
+I rechecked the TO-92 package orientation against the datasheet, verified the flat-face reference, and reseated the leads. The discrepancy disappeared, and the sensor returned to producing expected output voltages.
+
+This reinforced an important bench practice: verify component orientation and pin assignments before applying power.
 
 ### 3. Baseline & Dynamic Thermal Stimulus Testing
 
-With the sensor powered from the Arduino $5.0\text{ V}$ rail and probed directly between $V_{\text{out}}$ (center pin) and $\text{GND}$ (right pin):
+With the sensor powered from the Arduino's 5.0 V rail, I measured the output directly between Vout (center pin) and GND (right pin) using a digital multimeter.
 
-| Test Phase | Condition / Stimulus | Measured $V_{\text{out}}$ | Calculated Temp ($^\circ\text{C}$) | Calculated Temp ($^\circ\text{F}$) | Notes |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| **Baseline** | Unperturbed ambient room air | $0.733\text{ V}$ | $23.3^\circ\text{C}$ | $73.9^\circ\text{F}$ | Stable steady-state output |
-| **Initial Stimulus** | Brief pinch on plastic package | $0.740\text{ V}$ | $24.0^\circ\text{C}$ | $75.2^\circ\text{F}$ | $+7\text{ mV}$ initial thermal rise |
-| **Sustained Stimulus** | 15-second pinch on plastic body | $0.771\text{ V}$ | $27.1^\circ\text{C}$ | $80.8^\circ\text{F}$ | $+38\text{ mV}$ peak; heat soaked into die |
-| **Recovery** | Released to ambient air | $\rightarrow 0.733\text{ V}$ | $\rightarrow 23.3^\circ\text{C}$ | $\rightarrow 73.9^\circ\text{F}$ | Smooth linear decay back to baseline |
+I first recorded the ambient baseline, then applied a brief and sustained thermal stimulus by pinching the plastic sensor package between my fingers.
+
+| Test Phase | Condition / Stimulus | Measured Vout | Calculated Temp (°C) | Calculated Temp (°F) | Notes |
+|---|---|---:|---:|---:|---|
+| **Baseline** | Unperturbed ambient room air | 0.733 V | 23.3°C | 73.9°F | Stable steady-state output |
+| **Initial Stimulus** | Brief pinch on plastic package | 0.740 V | 24.0°C | 75.2°F | +7 mV initial rise |
+| **Sustained Stimulus** | 15-second pinch on plastic body | 0.771 V | 27.1°C | 80.8°F | +38 mV rise from baseline |
+| **Recovery** | Released to ambient air | → 0.733 V | → 23.3°C | → 73.9°F | Returned smoothly toward baseline |
+
+The measurements demonstrated a clear relationship between applied thermal stimulus and output voltage. Following release, the output gradually returned toward its original ambient baseline.
 
 ## Key Engineering Takeaways
 
-* **Active vs. Passive Topology:** Active sensors regulate their own output stage and require direct, unattenuated supply rails—never series current-limiting resistors in the power path.
-* **Physical Package Verification:** Always verify the physical index marking (flat face of the TO-92 package) directly against the component datasheet before applying power; swapped $+V_s$ and $\text{GND}$ leads can forward-bias internal protection junctions and damage the die.
-* **Thermal Time Constant:** The epoxy TO-92 casing introduces thermal lag; a sustained 15-second contact is required for body heat to conduct through the package into the internal silicon sensor.
-* **ADC Readiness:** Establishing the $0.733\text{ V}$ ($23.3^\circ\text{C}$) and $0.771\text{ V}$ ($27.1^\circ\text{C}$) anchor points on a calibrated multimeter provides an exact reference standard to validate `analogRead()` quantization and reference voltage ($V_{\text{ref}}$) math in the next stage.
+- **Active vs. Passive Topology:** Unlike a passive resistive sensor, the TMP36 contains active circuitry and requires a properly connected supply and ground. Its power connections should not be treated like a passive voltage-divider circuit.
+
+- **Physical Package Verification:** Always verify the physical orientation of a component against its datasheet before applying power. Reversing the supply connections can expose internal circuitry to damaging reverse voltage.
+
+- **Thermal Response:** The TO-92 package introduces thermal lag between the external stimulus and the internal sensing element. The difference between the brief and sustained contact measurements demonstrates that the sensor's output responds over time rather than instantaneously.
+
+- **ADC Readiness:** Establishing the 0.733 V (23.3°C) and 0.771 V (27.1°C) measurement points with a digital multimeter provides useful reference values for validating `analogRead()` quantization, ADC resolution, and reference-voltage calculations in the next stage.
 
 ## Embedded Systems Engineering Glossary
 
-* Refactored my **<a href="../embedded_systems_glossary.md">Embedded Systems Engineering Glossary</a>** to include a handful of new serial communications-related terms.
-* Reorganized it to make it more searchable.
-* Updated it in GitHub.
+As part of this report, I also made several updates to my [Embedded Systems Engineering Glossary](../embedded_systems_glossary.md):
+
+- Added several new serial communications-related terms.
+- Reorganized existing entries to make the glossary easier to navigate and search.
+- Updated the glossary in GitHub.
+
+---
+
+**Measure it. Build it. Test it. Document it.**
