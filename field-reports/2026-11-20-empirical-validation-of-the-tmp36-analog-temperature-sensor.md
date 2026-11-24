@@ -83,6 +83,6 @@ With the sensor powered from the Arduino $5.0\text{ V}$ rail and probed directly
 
 ## Embedded Systems Engineering Glossary
 
-* Refactored my **Embedded Systems Engineering Glossary** to include a handful of new serial communications-related terms.
+* Refactored my **<a href="../embedded_systems_glossary.md">Embedded Systems Engineering Glossary</a>** to include a handful of new serial communications-related terms.
 * Reorganized it to make it more searchable.
 * Updated it in GitHub.
