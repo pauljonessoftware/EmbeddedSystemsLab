@@ -47,7 +47,7 @@ $$
 
 ### Pinout Reference (TO-92 Package, Flat Face Toward Observer)
 
-* **Left Pin ($+V_s$):** Positive DC supply ($2.7\text{ V}–5.5\text{ V})
+* **Left Pin ($+V_s$):** Positive DC supply (2.7V –5.5V)
 * **Center Pin ($V_{\text{out}}$):** Analog voltage output
 * **Right Pin ($\text{GND}$):** Ground reference
 
